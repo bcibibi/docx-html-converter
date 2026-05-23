@@ -1,12 +1,12 @@
 import type { IRunOptions, XmlComponent } from "docx";
 import type { Node } from "dom-parser";
-import { NodeConverter } from "./node";
+import { NodeConverter, type GetChildrenFct } from "./node";
 import type { ConverterContext } from "../context/convertercontext";
 
 export class ULConverter extends NodeConverter {
 
-  convert(node: Node, run: IRunOptions, children: XmlComponent[], context: ConverterContext): XmlComponent[] {
-    return children;
+  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent[] {
+    return children(node, run, context);
   }
 
 }

@@ -11,6 +11,12 @@ import { ConverterContext } from "./context/convertercontext";
 import { ULConverter } from "./converter/ul";
 import { LIConverter } from "./converter/li";
 import { OLConverter } from "./converter/ol";
+import { BConverter } from "./converter/b";
+import { IConverter } from "./converter/i";
+import { UConverter } from "./converter/u";
+import { STRIKEConverter } from "./converter/strike";
+import { SUBConverter } from "./converter/sub";
+import { SUPConverter } from "./converter/sup";
 
 const log = debug("docxhtml:converter");
 
@@ -27,6 +33,14 @@ export namespace DocxHtmlConverter {
     "ul": new ULConverter(),
     "ol": new OLConverter(),
     "li": new LIConverter(),
+    "b": new BConverter(),
+    "strong": new BConverter(),
+    "i": new IConverter(),
+    "em": new IConverter(),
+    "u": new UConverter(),
+    "strike": new STRIKEConverter(),
+    "sub": new SUBConverter(),
+    "sup": new SUPConverter(),
   };
 
 
@@ -55,9 +69,7 @@ export namespace DocxHtmlConverter {
     log(`Converting node: ${node.nodeName}`);
     run = {...run, ...CSSParser.parse(node)};
     log(`Computed run options for node ${node.nodeName}: ${JSON.stringify(run)}`);
-    const children = node.childNodes.map(child => convertNode(child, context, run)).filter(c => c !== undefined).flat() as XmlComponent[];
-    log(`Converted node: ${node.nodeName} with ${children.length} children`);
-    const converted = nodeConverters[node.nodeName]?.convert(node, run, children, context);
+    const converted = nodeConverters[node.nodeName]?.convert(node, run, context, (n, r, c) => n.childNodes.map(child => convertNode(child, c, r)).filter(c => c !== undefined).flat() as XmlComponent[]);
     return converted ? (Array.isArray(converted) ? converted : [converted]) : undefined;
   }
 

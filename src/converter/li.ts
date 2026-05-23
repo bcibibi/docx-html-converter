@@ -1,19 +1,19 @@
 import { Paragraph, type IRunOptions, type XmlComponent } from "docx";
 import type { Node } from "dom-parser";
 import type { ConverterContext } from "../context/convertercontext";
-import { NodeConverter } from "./node";
+import { NodeConverter, type GetChildrenFct } from "./node";
 import debug from "debug";
 
 const log = debug("docxhtml:li");
 
 export class LIConverter extends NodeConverter {
 
-  convert(node: Node, run: IRunOptions, children: XmlComponent[], context: ConverterContext): XmlComponent {
+  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent {
     const isBullet = this.isBullet(node);
     const isNumbered = this.isNumbered(node);
     log("isBullet", isBullet, "isNumbered", isNumbered);
     return new Paragraph({
-      children,
+      children: children(node, run, context),
       run,
       ...(isBullet ? {
         bullet: {

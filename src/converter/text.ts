@@ -5,7 +5,7 @@ import type { ConverterContext } from "../context/convertercontext";
 
 
 export class TextConverter extends NodeConverter {
-  convert(node: Node, run: IRunOptions, children: XmlComponent[], context: ConverterContext): XmlComponent {
+  convert(node: Node, run: IRunOptions, context: ConverterContext): XmlComponent {
     return new TextRun({
       ...run,
       text: node.textContent || "",
