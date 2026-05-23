@@ -44,10 +44,24 @@
     "verify:modules": "npm run build && npm run verify:esm && npm run verify:cjs"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.13",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.9.1",
     "jest": "^30.4.2",
+    "open": "^11.0.0",
     "ts-jest": "^29.4.11",
     "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "docx": "^9.6.1"
+  },
+  "dependencies": {
+    "@csstools/css-color-parser": "^4.1.1",
+    "@csstools/css-parser-algorithms": "^4.0.0",
+    "@csstools/css-tokenizer": "^4.0.0",
+    "color-convert": "^3.1.3",
+    "css-unit-converter": "^1.1.2",
+    "debug": "^4.4.3",
+    "dom-parser": "^1.1.5"
   }
 }
