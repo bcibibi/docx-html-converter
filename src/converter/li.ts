@@ -8,12 +8,12 @@ const log = debug("docxhtml:li");
 
 export class LIConverter extends NodeConverter {
 
-  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent {
+  async convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): Promise<XmlComponent> {
     const isBullet = this.isBullet(node);
     const isNumbered = this.isNumbered(node);
     log("isBullet", isBullet, "isNumbered", isNumbered);
     return new Paragraph({
-      children: children(node, run, context),
+      children: await children(node, run, context),
       run,
       ...(isBullet ? {
         bullet: {

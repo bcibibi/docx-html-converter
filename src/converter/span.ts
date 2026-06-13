@@ -5,10 +5,10 @@ import type { ConverterContext } from "../context/convertercontext";
 
 export class SPANConverter extends NodeConverter {
 
-  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent {
+  async convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): Promise<XmlComponent> {
     return new TextRun({
       ...run,
-      children: children(node, run, context),
+      children: await children(node, run, context),
     });
   }
 }

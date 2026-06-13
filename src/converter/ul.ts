@@ -5,7 +5,7 @@ import type { ConverterContext } from "../context/convertercontext";
 
 export class ULConverter extends NodeConverter {
 
-  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent[] {
+  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): Promise<XmlComponent[]> {
     return children(node, run, context);
   }
 

@@ -1,12 +1,8 @@
 import type { IRunOptions } from "docx";
 import type { Node } from "dom-parser";
 import cssUnitConverter, { type CSSUnits } from "css-unit-converter";
-import { color } from '@csstools/css-color-parser';
-import { parseComponentValue } from '@csstools/css-parser-algorithms';
-import { serializeRGB } from '@csstools/css-color-parser';
-import { tokenize } from '@csstools/css-tokenizer';
-import colorconvert from 'color-convert';
 import { parseColor } from "./color";
+import type { ConverterContext } from "../context/convertercontext";
 
 export namespace CSSParser {
 
@@ -85,33 +81,28 @@ export namespace CSSParser {
     }
   };
 
-  export function parse(node: Node): IRunOptions {
+  export function parse(node: Node, context: ConverterContext): IRunOptions {
     let result: IRunOptions = {};
-
-    const style = node.getAttribute('style');
-    if (style) {
-      const declarations = style.split(';').map(decl => decl.trim()).filter(decl => decl.length > 0);
-      for (const decl of declarations) {
-        const [key, value] = decl.split(':').map(part => part.trim());
-        if (key && value) {
-          const parser = parsers[key];
-          if (parser) {
-            if (typeof parser === 'function') {
-              result = {
-                ...result,
-                ...parser(value)
-              }
-            } else {
-              result = {
-                ...result,
-                ...parser
-              }
+    const items = context.getCss(node);
+    for (const [key, value] of Object.entries(items)) {
+      if (key && value) {
+        const parser = parsers[key];
+        if (parser) {
+          if (typeof parser === 'function') {
+            result = {
+              ...result,
+              ...parser(value)
+            }
+          } else {
+            result = {
+              ...result,
+              ...parser
             }
           }
         }
       }
     }
-
     return result;
   }
+  
 }

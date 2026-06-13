@@ -5,11 +5,11 @@ import type { ConverterContext } from "../context/convertercontext";
 
 
 export class UConverter extends NodeConverter {
-  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent {
+  async convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): Promise<XmlComponent> {
     run = {...run, underline: { type: "single", color: "auto" }};
     return new TextRun({
       ...run,
-      children: children(node, run, context)
+      children: await children(node, run, context)
     });
   }
 }

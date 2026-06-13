@@ -5,9 +5,9 @@ import type { ConverterContext } from "../context/convertercontext";
 
 export class PConverter extends NodeConverter {
 
-  convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): XmlComponent {
+  async convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): Promise<XmlComponent> {
     return new Paragraph({
-      children: children(node, run, context),
+      children: await children(node, run, context),
       run
     });
   }
