@@ -1,6 +1,6 @@
-import { test } from "@jest/globals";
 import { readFileSync, writeFileSync } from "fs";
-import { DocxHtmlConverter } from "../src/index";
+import { test } from "@jest/globals";
+import { DocxHtmlConverter } from "../src/index.js";
 import { AlignmentType, convertInchesToTwip, Document, LevelFormat, Packer } from "docx";
 import open from "open";
 

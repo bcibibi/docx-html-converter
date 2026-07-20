@@ -1,5 +1,5 @@
 {
-  "name": "docx-html-converter",
+  "name": "@bcibibi/docx-html-converter",
   "version": "1.0.0",
   "description": "convert html to docx",
   "keywords": [
@@ -41,7 +41,8 @@
     "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:dist-types",
     "verify:esm": "node --input-type=module -e \"import('./dist/esm/index.js').then(() => { console.log('esm:ok'); })\"",
     "verify:cjs": "node -e \"require('./dist/cjs/index.js'); console.log('cjs:ok');\"",
-    "verify:modules": "npm run build && npm run verify:esm && npm run verify:cjs"
+    "verify:modules": "npm run build && npm run verify:esm && npm run verify:cjs",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "devDependencies": {
     "@types/debug": "^4.1.13",

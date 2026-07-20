@@ -1,8 +1,8 @@
 import type { IRunOptions } from "docx";
 import type { Node } from "dom-parser";
 import cssUnitConverter, { type CSSUnits } from "css-unit-converter";
-import { parseColor } from "./color";
-import type { ConverterContext } from "../context/convertercontext";
+import { parseColor } from "./color.js";
+import type { ConverterContext } from "../context/convertercontext.js";
 
 export namespace CSSParser {
 

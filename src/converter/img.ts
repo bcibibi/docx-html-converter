@@ -1,7 +1,7 @@
 import { ImageRun, TextRun, TextWrappingSide, TextWrappingType, type IFloating, type IRunOptions, type XmlComponent } from "docx";
 import type { Node } from "dom-parser";
-import { NodeConverter, type GetChildrenFct } from "./node";
-import type { ConverterContext } from "../context/convertercontext";
+import { NodeConverter, type GetChildrenFct } from "./node.js";
+import type { ConverterContext } from "../context/convertercontext.js";
 import debug from "debug";
 
 const log = debug("docxhtml:converter:img");

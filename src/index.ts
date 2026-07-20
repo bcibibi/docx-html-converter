@@ -1,30 +1,30 @@
 
 import { FileChild, XmlComponent, type IRunOptions } from "docx";
 import { Node, parseFromString } from "dom-parser";
-import { CSSParser } from "./css/cssparser";
-import type { NodeConverter } from "./converter/node";
+import { CSSParser } from "./css/cssparser.js";
+import type { NodeConverter } from "./converter/node.js";
 import debug from "debug";
-import { PConverter } from "./converter/p";
-import { TextConverter } from "./converter/text";
-import { SPANConverter } from "./converter/span";
-import { ConverterContext } from "./context/convertercontext";
-import { ULConverter } from "./converter/ul";
-import { LIConverter } from "./converter/li";
-import { OLConverter } from "./converter/ol";
-import { BConverter } from "./converter/b";
-import { IConverter } from "./converter/i";
-import { UConverter } from "./converter/u";
-import { STRIKEConverter } from "./converter/strike";
-import { SUBConverter } from "./converter/sub";
-import { SUPConverter } from "./converter/sup";
-import type { DocxHtmlFileProviderConstructor } from "./file/DocxHtmlFileProvider";
-import { DefaultDocxHtmlFileProvider } from "./file/DefaultDocxHtmlFileProvider";
-import { IMGConverter } from "./converter/img";
+import { PConverter } from "./converter/p.js";
+import { TextConverter } from "./converter/text.js";
+import { SPANConverter } from "./converter/span.js";
+import { ConverterContext } from "./context/convertercontext.js";
+import { ULConverter } from "./converter/ul.js";
+import { LIConverter } from "./converter/li.js";
+import { OLConverter } from "./converter/ol.js";
+import { BConverter } from "./converter/b.js";
+import { IConverter } from "./converter/i.js";
+import { UConverter } from "./converter/u.js";
+import { STRIKEConverter } from "./converter/strike.js";
+import { SUBConverter } from "./converter/sub.js";
+import { SUPConverter } from "./converter/sup.js";
+import type { DocxHtmlFileProviderConstructor } from "./file/DocxHtmlFileProvider.js";
+import { DefaultDocxHtmlFileProvider } from "./file/DefaultDocxHtmlFileProvider.js";
+import { IMGConverter } from "./converter/img.js";
 
 const log = debug("docxhtml:converter");
 
-export { DocxHtmlFileProvider } from "./file/DocxHtmlFileProvider";
-export { DefaultDocxHtmlFileProvider } from "./file/DefaultDocxHtmlFileProvider";
+export { DocxHtmlFileProvider } from "./file/DocxHtmlFileProvider.js";
+export { DefaultDocxHtmlFileProvider } from "./file/DefaultDocxHtmlFileProvider.js";
 
 export namespace DocxHtmlConverter {
 
