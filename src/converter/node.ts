@@ -1,6 +1,6 @@
 import type { IRunOptions, XmlComponent } from "docx";
 import type { Node } from "dom-parser";
-import type { ConverterContext } from "../context/convertercontext";
+import type { ConverterContext } from "../context/convertercontext.js";
 
 export type GetChildrenFct = (node: Node, run: IRunOptions, context: ConverterContext) => Promise<XmlComponent[]>;
 

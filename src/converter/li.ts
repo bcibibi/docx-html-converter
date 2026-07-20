@@ -1,7 +1,7 @@
 import { Paragraph, type IRunOptions, type XmlComponent } from "docx";
 import type { Node } from "dom-parser";
-import type { ConverterContext } from "../context/convertercontext";
-import { NodeConverter, type GetChildrenFct } from "./node";
+import type { ConverterContext } from "../context/convertercontext.js";
+import { NodeConverter, type GetChildrenFct } from "./node.js";
 import debug from "debug";
 
 const log = debug("docxhtml:li");

@@ -1,7 +1,7 @@
 import { TextRun, XmlComponent, type IRunOptions } from "docx";
-import { NodeConverter } from "./node";
+import { NodeConverter } from "./node.js";
 import type { Node } from "dom-parser";
-import type { ConverterContext } from "../context/convertercontext";
+import type { ConverterContext } from "../context/convertercontext.js";
 
 
 export class TextConverter extends NodeConverter {

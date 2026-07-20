@@ -1,7 +1,7 @@
 import { Paragraph, XmlComponent, type IRunOptions } from "docx";
-import { NodeConverter, type GetChildrenFct } from "./node";
+import { NodeConverter, type GetChildrenFct } from "./node.js";
 import type { Node } from "dom-parser";
-import type { ConverterContext } from "../context/convertercontext";
+import type { ConverterContext } from "../context/convertercontext.js";
 
 export class PConverter extends NodeConverter {
 

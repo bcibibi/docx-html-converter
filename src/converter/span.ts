@@ -1,7 +1,7 @@
 import { TextRun, type IRunOptions, type XmlComponent } from "docx";
 import type { Node } from "dom-parser";
-import { NodeConverter, type GetChildrenFct } from "./node";
-import type { ConverterContext } from "../context/convertercontext";
+import { NodeConverter, type GetChildrenFct } from "./node.js";
+import type { ConverterContext } from "../context/convertercontext.js";
 
 export class SPANConverter extends NodeConverter {
 

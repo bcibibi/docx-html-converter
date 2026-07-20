@@ -1,0 +1,8 @@
+.vscode
+.gitignore
+.github
+node_modules
+src
+test
+jest*
+tsconfig*

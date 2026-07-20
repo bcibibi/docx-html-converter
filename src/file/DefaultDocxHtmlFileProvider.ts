@@ -1,7 +1,7 @@
 import fs from "fs";
 import http from "http";
 import https from "https";
-import { DocxHtmlFileProvider } from "./DocxHtmlFileProvider";
+import { DocxHtmlFileProvider } from "./DocxHtmlFileProvider.js";
 
 export class DefaultDocxHtmlFileProvider extends DocxHtmlFileProvider {
 

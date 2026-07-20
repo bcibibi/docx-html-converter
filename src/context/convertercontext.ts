@@ -1,6 +1,6 @@
 import type { Node } from "dom-parser";
-import { DefaultDocxHtmlFileProvider } from "../file/DefaultDocxHtmlFileProvider";
-import type { DocxHtmlFileProviderConstructor } from "../file/DocxHtmlFileProvider";
+import { DefaultDocxHtmlFileProvider } from "../file/DefaultDocxHtmlFileProvider.js";
+import type { DocxHtmlFileProviderConstructor } from "../file/DocxHtmlFileProvider.js";
 
 
 
