@@ -1,6 +1,6 @@
 services:
   dev:
-    image: node:24
+    image: node:26
     volumes:
       - ..:/workspace
       - ${HOME}/.ssh:/root/.ssh:ro
