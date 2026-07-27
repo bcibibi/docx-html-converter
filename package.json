@@ -1,6 +1,6 @@
 {
   "name": "@bcibibi/docx-html-converter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "convert html to docx",
   "keywords": [
     "docx",
