@@ -7,7 +7,7 @@ import open from "open";
 test("docxhtml", async () => {
   const numbering = "my-numbering";
   const html = readFileSync("./test/assets/index.html", "utf-8");
-  const components = await DocxHtmlConverter.convert(html, { numbering });
+  const components = await DocxHtmlConverter.convert(html, { numbering, options: { italics: true } });
   const document = new Document({
     sections: [
       {

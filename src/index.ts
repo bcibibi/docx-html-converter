@@ -30,6 +30,7 @@ export namespace DocxHtmlConverter {
 
   export interface DocxHtmlConverterOptions {
     numbering?: string;
+    options?: IRunOptions;
     fileProvider?: DocxHtmlFileProviderConstructor;
   }
 
@@ -61,11 +62,14 @@ export namespace DocxHtmlConverter {
 
   export async function convert(html: string, options?: DocxHtmlConverterOptions): Promise<FileChild[]> {
     const result: FileChild[] = [];
-    const context = new ConverterContext(options?.numbering || "", options?.fileProvider || DefaultDocxHtmlFileProvider);
+    const context = new ConverterContext(
+      options?.numbering || "",
+      options?.fileProvider || DefaultDocxHtmlFileProvider
+    );
     const node = parseHtml(html);
     log(`Parsed HTML with root node: ${node?.nodeName}`);
     for (const child of node?.childNodes || []) {
-      const converted = await convertNode(child, context);
+      const converted = await convertNode(child, context, options?.options || {});
       if (converted) {
         result.push(...converted.filter(c => c instanceof FileChild) as FileChild[]);
       }
