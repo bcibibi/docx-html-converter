@@ -1,15 +1,20 @@
 import type { Node } from "dom-parser";
 import { DefaultDocxHtmlFileProvider } from "../file/DefaultDocxHtmlFileProvider.js";
 import type { DocxHtmlFileProviderConstructor } from "../file/DocxHtmlFileProvider.js";
+import type { DocxHtmlFileReader } from "../types/file.js";
 
 
 
 export class ConverterContext {
 
-  constructor(public numbering : string, private FileProvider: DocxHtmlFileProviderConstructor) { }
+  constructor(public numbering : string, private FileProvider: DocxHtmlFileProviderConstructor | undefined, private _fileReader: DocxHtmlFileReader) { }
 
-  getFileProvider(src: string): InstanceType<DocxHtmlFileProviderConstructor> {
-    return new this.FileProvider(src) as InstanceType<DocxHtmlFileProviderConstructor>;
+  get fileReader(): DocxHtmlFileReader {
+    return this._fileReader;
+  }
+
+  getFileProvider(src: string): InstanceType<DocxHtmlFileProviderConstructor>| undefined {
+    return this.FileProvider ? new this.FileProvider(src) as InstanceType<DocxHtmlFileProviderConstructor> : undefined;
   }
 
   getCss(node: Node): Record<string, string> {

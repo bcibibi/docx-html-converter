@@ -3,6 +3,9 @@ import http from "http";
 import https from "https";
 import { DocxHtmlFileProvider } from "./DocxHtmlFileProvider.js";
 
+/**
+ * @deprecated Use 'fileReader' instead of 'fileProvider' in DocxHtmlConverterOptions. This class will be removed in future versions.
+ */
 export class DefaultDocxHtmlFileProvider extends DocxHtmlFileProvider {
 
     getFileContent(): Promise<Buffer> {
