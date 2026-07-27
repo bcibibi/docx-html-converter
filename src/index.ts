@@ -18,13 +18,16 @@ import { STRIKEConverter } from "./converter/strike.js";
 import { SUBConverter } from "./converter/sub.js";
 import { SUPConverter } from "./converter/sup.js";
 import type { DocxHtmlFileProviderConstructor } from "./file/DocxHtmlFileProvider.js";
-import { DefaultDocxHtmlFileProvider } from "./file/DefaultDocxHtmlFileProvider.js";
 import { IMGConverter } from "./converter/img.js";
+import type { DocxHtmlFileReader } from "./types/file.js";
+import { defaultFileReader } from "./file/reader.js";
 
 const log = debug("docxhtml:converter");
 
 export { DocxHtmlFileProvider } from "./file/DocxHtmlFileProvider.js";
 export { DefaultDocxHtmlFileProvider } from "./file/DefaultDocxHtmlFileProvider.js";
+export type { DocxHtmlFileProviderConstructor } from "./file/DocxHtmlFileProvider.js";
+export type { DocxHtmlFileReader, DocxHtmlFileType } from "./types/file.js";
 
 export namespace DocxHtmlConverter {
 
@@ -32,6 +35,7 @@ export namespace DocxHtmlConverter {
     numbering?: string;
     options?: IRunOptions;
     fileProvider?: DocxHtmlFileProviderConstructor;
+    fileReader?: DocxHtmlFileReader;
   }
 
   const nodeConverters: Record<string, NodeConverter> = {
@@ -64,7 +68,8 @@ export namespace DocxHtmlConverter {
     const result: FileChild[] = [];
     const context = new ConverterContext(
       options?.numbering || "",
-      options?.fileProvider || DefaultDocxHtmlFileProvider
+      options?.fileProvider,
+      options?.fileReader || defaultFileReader
     );
     const node = parseHtml(html);
     log(`Parsed HTML with root node: ${node?.nodeName}`);

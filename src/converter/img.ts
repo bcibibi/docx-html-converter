@@ -3,6 +3,8 @@ import type { Node } from "dom-parser";
 import { NodeConverter, type GetChildrenFct } from "./node.js";
 import type { ConverterContext } from "../context/convertercontext.js";
 import debug from "debug";
+import { FileUtils } from "../file/utils.js";
+import type { DocxHtmlFileType } from "../types/file.js";
 
 const log = debug("docxhtml:converter:img");
 
@@ -10,11 +12,13 @@ export class IMGConverter extends NodeConverter {
 
   async convert(node: Node, run: IRunOptions, context: ConverterContext, children: GetChildrenFct): Promise<XmlComponent> {
     const src = node.getAttribute("src");
-    const fileProvider = context.getFileProvider(src);
-    const infos = await fileProvider.getFileInfos();
+    const infos = await this.getFile(context, src);
     if (!infos) {
-      log(`No file infos retrieved for src: ${src}`);
-      return new TextRun({ text: `[Image not found: ${src}]`, ...run });
+      log(`No file content found for src: ${src}`);
+      return new TextRun({
+        text: `[Image not found: ${src}]`,
+        ...run
+      });
     }
     const width = parseInt(node.getAttribute("width") || "100");
     const height = parseInt(node.getAttribute("height") || "100");
@@ -30,6 +34,20 @@ export class IMGConverter extends NodeConverter {
       },
       ...(floating ? { floating } : {})
     })
+  }
+
+  private async getFile(context: ConverterContext, src: string): Promise<{ content: Buffer, type: DocxHtmlFileType } | undefined> {
+    try {
+      const fileProvider = context.getFileProvider(src);
+      const content = fileProvider ? await fileProvider.getFileContent() : await context.fileReader(src);
+      return {
+        content,
+        type: FileUtils.getFileType(content)
+      }
+    } catch (error) {
+      log(`Error retrieving file for src: ${src} - ${error}`);
+      return undefined;
+    }
   }
 
 
